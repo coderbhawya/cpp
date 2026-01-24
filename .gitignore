@@ -1,0 +1,40 @@
+# Compiled object files
+*.o
+*.obj
+*.out
+*.exe
+*.app
+
+# Compiler-specific directories
+*.dSYM/
+*.su
+*.gch
+*.pch
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Any additional output files (optional to include)
+*.out
