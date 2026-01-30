@@ -3,6 +3,8 @@
 #include <string>
 #include <cctype>
 #include <cstdlib>
+// #include "qrcode.hpp"
+
 using namespace std;
 
 int main()
@@ -33,7 +35,7 @@ int main()
     }
 
     cout << "\n";
-    cout << "Welcome to Taco Bell " << user << "!" << endl;
+    cout << "Welcome to Taco Bell " << user <<"!" << endl;
     cout << "\t\t\t MENU " << endl;
 
     cout << "what would you like to have?" << endl;
@@ -44,25 +46,34 @@ int main()
     {
         cout << "JUICES MENU" << endl;
         cout << "------------" << endl;
-        int juices = 0;
-        cout << "1. Pineapple lime";
-        juices = 159;
-        cout << ":" << juices << "/-" << endl;
-        cout << "2. Cranberry crush";
-        juices = 189;
-        cout << ":" << juices << "/-" << endl;
-        cout << "3. Mango peach";
-        juices = 179;
-        cout << ":" << juices << "/-" << endl;
-        cout << "4. Dragonfruit berry";
-        juices = 199;
-        cout << ":" << juices << "/-" << endl;
+        
+        string juiceNames[] = {"Pineapple lime", "Cranberry crush", "Mango peach", "Dragonfruit berry"};
+        int juicePrices[] = {159, 189, 179, 199};
+        int juiceCount = 4;
+        
+        for (int i = 0; i < juiceCount; i++)
+        {
+            cout << (i + 1) << ". " << juiceNames[i];
+            cout << ":" << juicePrices[i] << "/-" << endl;
+        }
+        
         cout << "which juice would you like to have?: ";
         cin >> ws;
         getline(cin, js);
         file << "Juice: " << js << endl;
-        drinkPrice = juices;
+        
+        // Find selected juice price
+
+        for (int i = 0; i < juiceCount; i++)
+        {
+            if (js == juiceNames[i] || js == to_string(i + 1))
+            {
+                drinkPrice = juicePrices[i];
+                break;
+            }
+        }
     }
+
     else if (ch == 2)
     {
         cout << "SHAKES MENU" << endl;
@@ -97,7 +108,7 @@ int main()
     cin >> pm;
     file << "Main course (y/n): " << pm << endl;
 
-    if (pm == 'y' || pm == 'Y')
+    if (pm == 'yes' || pm == 'YES' || pm == 'y' || pm == 'Y')
     {
         cout << "please enter your choice <3 " << endl;
         cout << "Wrap or Taco (press 1 for wraps and 2 for taco): ";
@@ -126,6 +137,7 @@ int main()
             file << "Wrap: " << wr << endl;
             mainCoursePrice = wraps;
         }
+
         else if (mc == 2)
         {
             cout << "TACO" << endl;
@@ -180,6 +192,8 @@ int main()
         file << "Shake Price: " << drinkPrice << endl;
         totalBill += drinkPrice;
     }
+
+    
     else if (ch != 1 && ch != 2)
     {
         cout << "No drinks were selected." << endl;
@@ -233,7 +247,8 @@ int main()
         file << "Payment Method: UPI" << endl;
         file << "Amount Paid: " << totalBill << endl;
     }
-
+    
+    
     else if (pm1 == 2)
     {
         cout << "please pay on the counter." << endl;
